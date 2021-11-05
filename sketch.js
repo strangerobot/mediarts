@@ -28,6 +28,7 @@ var runner = Runner.create({
 let engine, world, mconst, mousebox, mouse;
 let bounds;
 let mX, mY;
+let rectwidth,rectheight;
 
 //objects
 
@@ -45,18 +46,23 @@ function setup() {
   // create an engine
   engine = Engine.create();
   world = engine.world;
+
+//calculate div positions
+  getdivbox();
+
   // Populate objects and start simulation
   enginesetup();
 }
 
 function windowResized() {
   //redraw the canvas;
-  canvas = resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, windowHeight);
   w = windowWidth;
   h = windowHeight;
 
   //reset engine
-  enginesetup();
+    getdivbox();
+    enginesetup();
 }
 
 function draw() {
@@ -71,7 +77,13 @@ function draw() {
   fill(255, 255, 0);
   drawBody(mousebox);
 
-  console.log(mousebox);
+  //console.log(mousebox);
+  var element=document.getElementById("test");
+  //console.log(element);
+  rect = element.getBoundingClientRect();
+  //console.log(rect.top, rect.left, rect.right, rect.bottom);
+  rectwidth=rect.right-rect.left;
+  rectheight=rect.bottom-rect.top;
   //console.log(mousebox);
 }
 
@@ -83,7 +95,7 @@ function enginesetup() {
 
   //adds the bodies
   setbodies();
-  
+
   //runs the engine
   engine.world.gravity.y = 0;
   Runner.run(runner, engine);
@@ -121,12 +133,20 @@ function setbodies() {
   //make a compound object
 
   parts = [];
+  // parts.push(
+  //   Bodies.rectangle(w / 2, h - 50, w - 100, 1, { isStatic: false }),
+  //   Bodies.rectangle(50, h / 2, 1, h - 100, { isStatic: false }),
+  //   Bodies.rectangle(w - 50, h / 2, 1, h - 100, { isStatic: false }),
+  //   Bodies.rectangle(w / 2, 50, w - 100, 1, { isStatic: false })
+  // );
+
   parts.push(
-    Bodies.rectangle(w / 2, h - 50, w - 100, 1, { isStatic: false }),
-    Bodies.rectangle(50, h / 2, 1, h - 100, { isStatic: false }),
-    Bodies.rectangle(w - 50, h / 2, 1, h - 100, { isStatic: false }),
-    Bodies.rectangle(w / 2, 50, w - 100, 1, { isStatic: false })
+    Bodies.rectangle(rect.left+(rectwidth/2), rect.top, rectwidth, 1, { isStatic: false }),
+    Bodies.rectangle(rect.left+(rectwidth/2), rect.bottom, rectwidth, 1, { isStatic: false }),
+    Bodies.rectangle(rect.left, rect.top+(rectheight/2), 1, rectheight, { isStatic: false }),
+    Bodies.rectangle(rect.right,rect.top+(rectheight/2), 1,rectheight, { isStatic: false })
   );
+
 
   bounds = Body.create({ parts, airfriction:0.2 ,mass: 10000, isStatic: false, angle: 2 });
   console.log(bounds);
@@ -158,6 +178,17 @@ function updatemouse() {
     x: mX,
     y: mY
   });
+}
+
+function getdivbox()
+{
+
+  var element=document.getElementById("test");
+  //console.log(element);
+  rect = element.getBoundingClientRect();
+  //console.log(rect.top, rect.left, rect.right, rect.bottom);
+  rectwidth=rect.right-rect.left;
+  rectheight=rect.bottom-rect.top;
 }
 
 //optimisation
