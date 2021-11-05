@@ -48,8 +48,6 @@ function setup() {
   engine = Engine.create();
   world = engine.world;
 
-//calculate div positions
-  getdivbox();
 
   // Populate objects and start simulation
   enginesetup();
@@ -62,7 +60,6 @@ function windowResized() {
   h = windowHeight;
 
   //reset engine
-    getdivbox();
     enginesetup();
 }
 
@@ -134,35 +131,28 @@ function setbodies() {
   //make a compound object
 
   parts = [];
-  // parts.push(
-  //   Bodies.rectangle(w / 2, h - 50, w - 100, 1, { isStatic: false }),
-  //   Bodies.rectangle(50, h / 2, 1, h - 100, { isStatic: false }),
-  //   Bodies.rectangle(w - 50, h / 2, 1, h - 100, { isStatic: false }),
-  //   Bodies.rectangle(w / 2, 50, w - 100, 1, { isStatic: false })
-  // );
-
   parts.push(
-    Bodies.rectangle(rect.left+(rectwidth/2), rect.top, rectwidth, 1, { isStatic: false }),
-    Bodies.rectangle(rect.left+(rectwidth/2), rect.bottom, rectwidth, 1, { isStatic: false }),
-    Bodies.rectangle(rect.left, rect.top+(rectheight/2), 1, rectheight, { isStatic: false }),
-    Bodies.rectangle(rect.right,rect.top+(rectheight/2), 1,rectheight, { isStatic: false })
+    Bodies.rectangle(w / 2, h - 50, w - 100, 1, { isStatic: false }),
+    Bodies.rectangle(50, h / 2, 1, h - 100, { isStatic: false }),
+    Bodies.rectangle(w - 50, h / 2, 1, h - 100, { isStatic: false }),
+    Bodies.rectangle(w / 2, 50, w - 100, 1, { isStatic: false })
   );
 
 
   bounds = Body.create({ parts, frictionAir:0.1 ,mass: 1000000, inertia:50000 , isStatic: false, angle: 2 });
   //boundsconstraints
 
-  boundsconst1= Constraint.create({
-    bodyA: bounds,
-    pointB: { x: rect.left+(rectwidth/2), y:rect.top+(rectheight/2) },
-    length: 0,
-    stiffness:0.02,
-    damping:0.2
-  });
+  // boundsconst1= Constraint.create({
+  //   bodyA: bounds,
+  //   pointB: { x: rect.left+(rectwidth/2), y:rect.top+(rectheight/2) },
+  //   length: 0,
+  //   stiffness:0.02,
+  //   damping:0.2
+  // });
 
   console.log(bounds);
 
-  World.add(world, [bounds, boundsconst1]);
+  World.add(world, [bounds]);
   World.add(world, [bottom, left, right, roof]);
 
   //mouse
@@ -189,17 +179,6 @@ function updatemouse() {
     x: mX,
     y: mY
   });
-}
-
-function getdivbox()
-{
-
-  var element=document.getElementById("test");
-  //console.log(element);
-  rect = element.getBoundingClientRect();
-  //console.log(rect.top, rect.left, rect.right, rect.bottom);
-  rectwidth=rect.right-rect.left;
-  rectheight=rect.bottom-rect.top;
 }
 
 //optimisation
