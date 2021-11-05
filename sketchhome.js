@@ -153,7 +153,7 @@ function setbodies() {
   
 
 //1000001 is a hack to not attract
-  bounds = Body.create({ parts,frictionAir: 0.03, mass: 10000, inertia: 50000, isStatic: false, collisionFilter: {
+  bounds = Body.create({ parts,frictionAir: 0.03, mass: 9000, inertia: 5000, isStatic: false, collisionFilter: {
                     category: wallcollider
                 } });
   //boundsconstraints
@@ -193,7 +193,7 @@ function setbodies() {
  // World.add(world, [mconst]);
 
   attractor = Bodies.circle(400, 400, 50, {
-    isStatic: false, mass:100, collisionFilter: {
+    isStatic: false, mass:90, collisionFilter: {
       category: mousecollider,
       mask: mousecollider | othercollider
   },
@@ -201,8 +201,8 @@ function setbodies() {
       attractors: [
         function (bodyA, bodyB) {
           var force = {
-            x: (bodyA.position.x - bodyB.position.x) * 0.5e-6 + random(-5,5) * 5e-4,
-            y: (bodyA.position.y - bodyB.position.y) * 0.5e-6 + + random(-5,5) * 5e-4,
+            x: (bodyA.position.x - bodyB.position.x) * 1e-7 + random(-5,5) * 1e-4,
+            y: (bodyA.position.y - bodyB.position.y) * 1e-7 + + random(-5,5) * 1e-4,
           };
   
           // apply force to both bodies
@@ -216,9 +216,9 @@ function setbodies() {
 
   // add boxes
   // xx, yy, columns, rows, columnGap, rowGap
-  boxes = Composites.stack(width / 2, height/5, 16, 16, 10, 15, function (x, y) {
+  boxes = Composites.stack(width / 2, height/5, 10, 10, 10, 15, function (x, y) {
     var rand=random(0.6,2);
-    return Bodies.rectangle(x, y, 15, 25, {mass:1,restitution:0.2, frictionAir:0.002, friction:0.2, collisionFilter: {
+    return Bodies.rectangle(x, y, 15, 25, {mass:1,restitution:0.1, frictionAir:0.01, friction:0.2, collisionFilter: {
       category: othercollider
   }});
   });
