@@ -67,6 +67,7 @@ function setup() {
 
   cursorimg = loadImage('cursor.png');
   usercursorimg = loadImage('cursor_main.png');
+  pixelDensity(1);
 
   
   // Populate objects and start simulation
@@ -95,6 +96,7 @@ function windowResized() {
   currentcolor=Math.floor(Math.random() * colors.length);
   //reset engine
   enginesetup();
+  pixelDensity(1);
   }
 }
 
