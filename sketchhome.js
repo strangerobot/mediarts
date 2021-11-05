@@ -29,9 +29,9 @@ let attractor;
 let boxes;
 
 var runner = Runner.create({
-  isFixed: true,
+  isFixed: false,
   //simulation refreshrate
-  delta: 1000 / 120
+  //delta: 1000 / 240
 });
 
 //// engine is the simulation
