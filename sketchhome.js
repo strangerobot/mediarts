@@ -3,6 +3,9 @@
 //feature to add https://b-g.github.io/p5-matter-examples/12-attractor/
 
 //sketch for HOME PAGE
+//detectmobile device
+var detector = new MobileDetect(window.navigator.userAgent);
+var mobile=false;
 
 //matterjs setup
 Matter.use('matter-attractors');
@@ -65,19 +68,34 @@ function setup() {
   cursorimg = loadImage('cursor.png');
   usercursorimg = loadImage('cursor_main.png');
 
-
+  
   // Populate objects and start simulation
   enginesetup();
 }
 
+function mobilechecker(){
+
+  if( navigator.userAgent.match(/Android/i)
+ || navigator.userAgent.match(/webOS/i)
+ || navigator.userAgent.match(/iPhone/i)
+ || navigator.userAgent.match(/iPad/i)
+ || navigator.userAgent.match(/iPod/i)
+ || navigator.userAgent.match(/BlackBerry/i)
+ || navigator.userAgent.match(/Windows Phone/i))
+ mobile=true;
+
+}
+
 function windowResized() {
   //redraw the canvas;
+  if(!mobile){
   resizeCanvas(windowWidth, windowHeight);
   w = windowWidth;
   h = windowHeight;
   currentcolor=Math.floor(Math.random() * colors.length);
   //reset engine
   enginesetup();
+  }
 }
 
 function draw() {
@@ -153,7 +171,7 @@ function setbodies() {
   
 
 //1000001 is a hack to not attract
-  bounds = Body.create({ parts,frictionAir: 0.03, mass: 9000, inertia: 5000, isStatic: false, collisionFilter: {
+  bounds = Body.create({ parts,frictionAir: 0.02, friction : 0.1, mass: 300, inertia: 100000, isStatic: false, collisionFilter: {
                     category: wallcollider
                 } });
   //boundsconstraints
@@ -161,9 +179,9 @@ function setbodies() {
   boundsconst1= Constraint.create({
     bodyA: bounds,
     pointB: { x: w/2, y: h/2 },
-    length: 10,
-    stiffness:0.05,
-    damping:0.02
+    length: 0,
+    stiffness:0.0001,
+    damping:0.005
   });
 
 
@@ -193,7 +211,7 @@ function setbodies() {
  // World.add(world, [mconst]);
 
   attractor = Bodies.circle(400, 400, 50, {
-    isStatic: false, mass:90, collisionFilter: {
+    isStatic: false, mass:90, friction: 0.2, collisionFilter: {
       category: mousecollider,
       mask: mousecollider | othercollider
   },
@@ -201,8 +219,8 @@ function setbodies() {
       attractors: [
         function (bodyA, bodyB) {
           var force = {
-            x: (bodyA.position.x - bodyB.position.x) * 1e-7 + random(-5,5) * 1e-4,
-            y: (bodyA.position.y - bodyB.position.y) * 1e-7 + + random(-5,5) * 1e-4,
+            x: (bodyA.position.x - bodyB.position.x) * 1.5e-7 + random(-5,5) * 1.8e-4,
+            y: (bodyA.position.y - bodyB.position.y) * 1.5e-7 + + random(-5,5) * 1.8e-4,
           };
   
           // apply force to both bodies
@@ -216,9 +234,14 @@ function setbodies() {
 
   // add boxes
   // xx, yy, columns, rows, columnGap, rowGap
-  boxes = Composites.stack(width / 3, height/5, 10, 12, width/40,height/40, function (x, y) {
+  if(mobile)
+  cursornumber =10;
+  else
+  cursornumber=16;
+
+  boxes = Composites.stack(width / 3, height/5, cursornumber, cursornumber, width/60,height/100, function (x, y) {
     var rand=random(0.6,2);
-    return Bodies.rectangle(x, y, 15, 25, {mass:1,restitution:0.1, frictionAir:0.03, friction:0.2, collisionFilter: {
+    return Bodies.rectangle(x, y, 15, 25, {mass:0.5,restitution:0.1, frictionAir:0.01, friction:0.2, collisionFilter: {
       category: othercollider
   }});
   });
