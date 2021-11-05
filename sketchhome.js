@@ -216,7 +216,7 @@ function setbodies() {
 
   // add boxes
   // xx, yy, columns, rows, columnGap, rowGap
-  boxes = Composites.stack(width / 2, height/5, 10, 12, 12, 15, function (x, y) {
+  boxes = Composites.stack(width / 3, height/5, 10, 12, width/40,height/40, function (x, y) {
     var rand=random(0.6,2);
     return Bodies.rectangle(x, y, 15, 25, {mass:1,restitution:0.1, frictionAir:0.03, friction:0.2, collisionFilter: {
       category: othercollider
