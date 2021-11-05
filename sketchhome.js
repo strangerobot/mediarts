@@ -117,7 +117,7 @@ function draw() {
   for (var j = 0; j < 8; j++)
     vertex(bounds.vertices[j].x, bounds.vertices[j].y);
   endShape(CLOSE);
-  fill(0, 150);
+  fill(255, 255);
   
   drawSprites(boxes.bodies,cursorimg);
  // drawBodies(boxes.bodies);
@@ -239,9 +239,9 @@ function setbodies() {
   if(mobile)
   cursornumber =10;
   else
-  cursornumber=16;
+  cursornumber=17;
 
-  boxes = Composites.stack(width / 3, height/5, cursornumber, cursornumber, width/60,height/100, function (x, y) {
+  boxes = Composites.stack(width / 4, height/8, cursornumber, cursornumber, width/100,height/100, function (x, y) {
     var rand=random(0.6,2);
     return Bodies.rectangle(x, y, 15, 25, {mass:0.5,restitution:0.1, frictionAir:0.01, friction:0.2, collisionFilter: {
       category: othercollider
@@ -255,8 +255,8 @@ function setbodies() {
 function updatemouse() {
   // smoothly move the attractor body towards the mouse
   Body.translate(attractor, {
-    x: (mouseX - attractor.position.x) * 0.25,
-    y: (mouseY - attractor.position.y) * 0.25
+    x: (mouseX - attractor.position.x) * 0.15,
+    y: (mouseY - attractor.position.y) * 0.15
   });
 }
 
