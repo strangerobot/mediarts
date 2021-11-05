@@ -24,6 +24,14 @@ const Helpers = (function() {
     }
   }
 
+  function drawSprites(bodies,sprite) {
+    for (let i = 0; i < bodies.length; i++) {
+      drawSprite(bodies[i],sprite);
+    }
+  }
+
+
+
   function drawMouse(mouseConstraint) {
     if (mouseConstraint.body) {
       const pos = mouseConstraint.body.position;
@@ -71,6 +79,7 @@ const Helpers = (function() {
     const angle = body.angle;
     push();
     translate(pos.x, pos.y);
+    let randsize=random(0.8,1.5);
     rotate(angle);
     imageMode(CENTER);
     image(img, 0, 0);
@@ -108,6 +117,7 @@ const Helpers = (function() {
     drawConstraints: drawConstraints,
     drawSprite: drawSprite,
     drawText: drawText,
+    drawSprites: drawSprites,
     bodyFromPath: bodyFromPath,
   }
 

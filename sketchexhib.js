@@ -29,7 +29,6 @@ var runner = Runner.create({
 let engine, world, mconst, mousebox, mouse;
 let bounds;
 let mX, mY;
-let rectwidth,rectheight;
 
 //objects
 
