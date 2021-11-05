@@ -31,7 +31,7 @@ let boxes;
 var runner = Runner.create({
   isFixed: true,
   //simulation refreshrate
-  delta: 1000 / 120
+  delta: 1000 / 60
 });
 
 //// engine is the simulation
@@ -56,7 +56,7 @@ function setup() {
   canvas.id('sketch');
   w = windowWidth;
   h = windowHeight;
-  frameRate(120);
+ // frameRate(120);
   // create an engine
   engine = Engine.create();
   world = engine.world;
