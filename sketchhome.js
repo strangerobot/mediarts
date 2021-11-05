@@ -31,7 +31,7 @@ let boxes;
 var runner = Runner.create({
   isFixed: true,
   //simulation refreshrate
-  delta: 1000 / 60
+  delta: 1000 / 120
 });
 
 //// engine is the simulation
@@ -216,7 +216,7 @@ function setbodies() {
 
   // add boxes
   // xx, yy, columns, rows, columnGap, rowGap
-  boxes = Composites.stack(width / 2, height/5, 8, 8, 10, 15, function (x, y) {
+  boxes = Composites.stack(width / 2, height/5, 16, 16, 10, 15, function (x, y) {
     var rand=random(0.6,2);
     return Bodies.rectangle(x, y, 15, 25, {mass:1,restitution:0.2, frictionAir:0.002, friction:0.2, collisionFilter: {
       category: othercollider
