@@ -1,0 +1,266 @@
+//Bug fixes and optimisation
+// https://www.py4u.net/discuss/335084
+//feature to add https://b-g.github.io/p5-matter-examples/12-attractor/
+
+//sketch for HOME PAGE
+
+//matterjs setup
+Matter.use('matter-attractors');
+const Engine = Matter.Engine;
+const World = Matter.World;
+const Bodies = Matter.Bodies;
+const Body = Matter.Body;
+const Events = Matter.Events;
+const Composite = Matter.Composite;
+const Mouse = Matter.Mouse;
+const MouseConstraint = Matter.MouseConstraint;
+const Constraint = Matter.Constraint;
+const Runner = Matter.Runner;
+const Composites = Matter.Composites;
+
+const drawBodies = Helpers.drawBodies;
+
+const drawBody = Helpers.drawBody;
+const drawMouse = Helpers.drawMouse;
+const drawSprites = Helpers.drawSprites;
+
+var dragBody = null;
+let attractor;
+let boxes;
+
+var runner = Runner.create({
+  isFixed: true,
+  //simulation refreshrate
+  delta: 1000 / 120
+});
+
+//// engine is the simulation
+let engine, world, mconst, mousebox, mouse;
+let bounds;
+let mX, mY;
+let cursorimg,usercursorimg;
+
+var colors = ["#FFC47F","#C3A0FF","#FFBBAD","#F5B6ED","#F0FFAE"], currentcolor=2;
+var wallcollider = 0x0001,
+mousecollider = 0x0002,
+othercollider = 0x0004;
+//objects
+
+//width and height
+let w, h;
+
+function setup() {
+  //setting canvas size
+  const canvas = createCanvas(windowWidth, windowHeight);
+  canvas.position(0, 0);
+  canvas.id('sketch');
+  w = windowWidth;
+  h = windowHeight;
+  frameRate(120);
+  // create an engine
+  engine = Engine.create();
+  world = engine.world;
+  currentcolor=Math.floor(Math.random() * colors.length);
+
+  cursorimg = loadImage('cursor.png');
+  usercursorimg = loadImage('cursor_main.png');
+
+
+  // Populate objects and start simulation
+  enginesetup();
+}
+
+function windowResized() {
+  //redraw the canvas;
+  resizeCanvas(windowWidth, windowHeight);
+  w = windowWidth;
+  h = windowHeight;
+  currentcolor=Math.floor(Math.random() * colors.length);
+  //reset engine
+  enginesetup();
+}
+
+function draw() {
+  background(255);
+  fill(0);
+  noStroke();
+  //updatemouse();
+  //fill(255,0,0);
+
+
+  fill(colors[currentcolor]);
+
+  //physics from matterjs
+  drawBody(bounds);
+  //vertex drawing of bounds in p5
+  beginShape();
+  for (var j = 0; j < 8; j++)
+    vertex(bounds.vertices[j].x, bounds.vertices[j].y);
+  endShape(CLOSE);
+  fill(0, 150);
+  
+  drawSprites(boxes.bodies,cursorimg);
+ // drawBodies(boxes.bodies);
+updatemouse();
+ drawBody(attractor);
+  //drawSprite(attractor,usercursorimg),
+  console.log(bounds.force.x);
+
+}
+//console.log(mousebox);
+
+function mousePressed() {
+  currentcolor=Math.floor(Math.random() * colors.length);
+
+}
+
+
+function enginesetup() {
+  //resets the world and engine
+
+  World.clear(world);
+  Engine.clear(engine);
+
+  //adds the bodies
+  setbodies();
+
+  //runs the engine
+  engine.world.gravity.scale = 0;
+  Runner.run(runner, engine);
+}
+
+//adds bodies to the world
+function setbodies() {
+  //objects
+
+  //bounds
+
+  bottom = Bodies.rectangle(w / 2, h, w, 2, { isStatic: true });
+  left = Bodies.rectangle(2, h / 2, 2, h, { isStatic: true });
+  right = Bodies.rectangle(w - 2, h / 2, 2, h, { isStatic: true });
+  roof = Bodies.rectangle(w / 2, 0, w, 2, { isStatic: true });
+
+  //make a compound object
+
+  parts = [];
+  pad=0.05*w;
+  parts.push(
+    Bodies.rectangle(w / 2, h -pad, w -pad*2, 1, { isStatic: false }),
+    Bodies.rectangle(pad, h / 2, 1, h -pad*2, { isStatic: false }),
+    Bodies.rectangle(w - pad, h / 2, 1, h-pad*2, { isStatic: false }),
+    Bodies.rectangle(w / 2, pad, w -pad*2, 1, { isStatic: false })
+  );
+  
+
+//1000001 is a hack to not attract
+  bounds = Body.create({ parts,frictionAir: 0.03, mass: 10000, inertia: 50000, isStatic: false, collisionFilter: {
+                    category: wallcollider
+                } });
+  //boundsconstraints
+
+  boundsconst1= Constraint.create({
+    bodyA: bounds,
+    pointB: { x: w/2, y: h/2 },
+    length: 10,
+    stiffness:0.05,
+    damping:0.02
+  });
+
+
+
+  World.add(world, [bounds,boundsconst1]);
+  World.add(world, [bottom, left, right, roof]);
+
+  //mouse
+
+  mouse = Mouse.create(canvas.elt);
+  var options = {
+    mouse: mouse,
+    constraint: {
+      stiffness: 0.002,
+      damping: 0.1
+      
+    }
+  };
+  //mconst = MouseConstraint.create(engine, options);
+  mX = 100;
+  mY = 100;
+
+
+
+
+
+ // World.add(world, [mconst]);
+
+  attractor = Bodies.circle(400, 400, 50, {
+    isStatic: false, mass:100, collisionFilter: {
+      category: mousecollider,
+      mask: mousecollider | othercollider
+  },
+    plugin: {
+      attractors: [
+        function (bodyA, bodyB) {
+          var force = {
+            x: (bodyA.position.x - bodyB.position.x) * 0.5e-6 + random(-5,5) * 5e-4,
+            y: (bodyA.position.y - bodyB.position.y) * 0.5e-6 + + random(-5,5) * 5e-4,
+          };
+  
+          // apply force to both bodies
+          Body.applyForce(bodyA, bodyA.position, Matter.Vector.neg(force));
+          Body.applyForce(bodyB, bodyB.position, force);
+        }
+      ]
+    }
+  });
+  World.add(engine.world, attractor);
+
+  // add boxes
+  // xx, yy, columns, rows, columnGap, rowGap
+  boxes = Composites.stack(width / 2, height/5, 15, 15, 10, 15, function (x, y) {
+    var rand=random(0.6,2);
+    return Bodies.rectangle(x, y, 15, 25, {mass:1,restitution:0.2, frictionAir:0.002, friction:0.2, collisionFilter: {
+      category: othercollider
+  }});
+  });
+  World.add(engine.world, boxes);
+
+
+}
+
+function updatemouse() {
+  // smoothly move the attractor body towards the mouse
+  Body.translate(attractor, {
+    x: (mouseX - attractor.position.x) * 0.25,
+    y: (mouseY - attractor.position.y) * 0.25
+  });
+}
+
+//optimisation
+
+Matter.Events.on(engine, "beforeUpdate", function (event) {
+  counter += 0.014;
+  if (counter < 0) {
+    return;
+  }
+  var px = 400 + 100 * Math.sin(counter);
+  Matter.Body.setVelocity(body, { x: px - body.position.x, y: 0 });
+  Matter.Body.setPosition(body, { x: px, y: body.position.y });
+  if (dragBody != null) {
+    if (dragBody.velocity.x > 12.0) {
+      Matter.Body.setVelocity(dragBody, { x: 12, y: dragBody.velocity.y });
+    }
+    if (dragBody.velocity.y > 12.0) {
+      Matter.Body.setVelocity(dragBody, { x: dragBody.velocity.x, y: 12 });
+    }
+    if (dragBody.positionImpulse.x > 12.0) {
+      dragBody.positionImpulse.x = 12.0;
+    }
+    if (dragBody.positionImpulse.y > 12.0) {
+      dragBody.positionImpulse.y = 12.0;
+    }
+  }
+});
+
+Matter.Events.on(mouseConstraint, "startdrag", function (event) {
+  dragBody = event.body;
+});
