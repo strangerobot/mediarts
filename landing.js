@@ -66,7 +66,7 @@ function setup() {
   currentcolor=Math.floor(Math.random() * colors.length);
 
   cursorimg = loadImage('cursor.png');
-  usercursorimg = loadImage('cursor_main.png');
+  //usercursorimg = loadImage('cursor_main.png');
   pixelDensity(1);
 
   
