@@ -2,7 +2,7 @@ canvas#sketch{
   position:absolute;
   left:0;
   top:0;
-  z-index:1;
+  z-index:-1;
 }
 
 #test {
@@ -12,3 +12,8 @@ canvas#sketch{
       margin: 8%;
       border: 1px solid red;
     }
+
+  
+.is-d1{
+  color:white;
+}
