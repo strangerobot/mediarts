@@ -50,15 +50,15 @@ othercollider = 0x0004;
 //objects
 
 //width and height
-let w, h;
+let w1, h1;
 
 function setup() {
   //setting canvas size
   const canvas = createCanvas(windowWidth, windowHeight);
   canvas.position(0, 0);
   canvas.id('sketch');
-  w = windowWidth;
-  h = windowHeight;
+  w1 = windowWidth;
+  h1 = windowHeight;
  // frameRate(120);
   // create an engine
   engine = Engine.create();
@@ -91,8 +91,8 @@ function windowResized() {
   //redraw the canvas;
   if(!mobile){
   resizeCanvas(windowWidth, windowHeight);
-  w = windowWidth;
-  h = windowHeight;
+  w1 = windowWidth;
+  h1 = windowHeight;
   currentcolor=Math.floor(Math.random() * colors.length);
   //reset engine
   enginesetup();
@@ -155,20 +155,20 @@ function setbodies() {
 
   //bounds
 
-  bottom = Bodies.rectangle(w / 2, h, w, 2, { isStatic: true });
-  left = Bodies.rectangle(2, h / 2, 2, h, { isStatic: true });
-  right = Bodies.rectangle(w - 2, h / 2, 2, h, { isStatic: true });
-  roof = Bodies.rectangle(w / 2, 0, w, 2, { isStatic: true });
+  bottom = Bodies.rectangle(w1 / 2, h1, w1, 2, { isStatic: true });
+  left = Bodies.rectangle(2, h1 / 2, 2, h1, { isStatic: true });
+  right = Bodies.rectangle(w1 - 2, h1 / 2, 2, h1, { isStatic: true });
+  roof = Bodies.rectangle(w1 / 2, 0, w1, 2, { isStatic: true });
 
   //make a compound object
 
   parts = [];
-  pad=0.05*h;
+  pad=0.05*h1;
   parts.push(
-    Bodies.rectangle(w / 2, h -pad, w -pad*2, 1, { isStatic: false }),
-    Bodies.rectangle(pad, h / 2, 1, h -pad*2, { isStatic: false }),
-    Bodies.rectangle(w - pad, h / 2, 1, h-pad*2, { isStatic: false }),
-    Bodies.rectangle(w / 2, pad, w -pad*2, 1, { isStatic: false })
+    Bodies.rectangle(w1 / 2, h1 -pad, w1 -pad*2, 1, { isStatic: false }),
+    Bodies.rectangle(pad, h1 / 2, 1, h1 -pad*2, { isStatic: false }),
+    Bodies.rectangle(w1 - pad, h1 / 2, 1, h1-pad*2, { isStatic: false }),
+    Bodies.rectangle(w1 / 2, pad, w1 -pad*2, 1, { isStatic: false })
   );
   
 
@@ -180,7 +180,7 @@ function setbodies() {
 
   boundsconst1= Constraint.create({
     bodyA: bounds,
-    pointB: { x: w/2, y: h/2 },
+    pointB: { x: w1/2, y: h1/2 },
     length: 0,
     stiffness:0.0001,
     damping:0.005
