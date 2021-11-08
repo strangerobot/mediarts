@@ -256,7 +256,7 @@ function setbodies() {
   if (mobile)
     cursornumber = 10;
   else
-    cursornumber = 3;
+    cursornumber = 4;
 
   boxes = Composites.stack(width / 2, height / 2, cursornumber, cursornumber, width / 100, height / 100, function (x, y) {
     var rand = random(0.6, 2);
