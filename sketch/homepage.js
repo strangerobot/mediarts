@@ -42,8 +42,9 @@ let engine, world, mconst, mousebox, mouse;
 let bounds;
 let mX, mY;
 let cursorimg, usercursorimg;
-
-var colors = ["#FFC47F", "#C3A0FF", "#FFBBAD", "#F5B6ED", "#F0FFAE"], currentcolor = 2;
+//colors ora
+var colors = ['#F5F3EF', "#c2a0ff", "#ffbbad", "#e5ecc5", "#f5b6ed", "#ffde90","ffffff"], currentcolor = 2;
+var bgcolor,color1,color2,color3,color4,color5;
 var wallcollider = 0x0001,
   mousecollider = 0x0002,
   othercollider = 0x0004;
@@ -72,6 +73,27 @@ function setup() {
 
   // Populate objects and start simulation
   enginesetup();
+  bgcolor = colors[0];
+  //
+
+  //mouseover behaviours
+  document.getElementById("sec1").onmouseover = function () { mouseOver(1) };
+  document.getElementById("sec2").onmouseover = function () { mouseOver(2) };
+  document.getElementById("sec3").onmouseover = function () { mouseOver(3) };
+  document.getElementById("sec4").onmouseover = function () { mouseOver(4) };
+  document.getElementById("sec5").onmouseover = function () { mouseOver(5) };
+
+
+  document.getElementById("sec1").onmouseout = function () { mouseOut(1) };
+  document.getElementById("sec2").onmouseout = function () { mouseOut(2) };
+  document.getElementById("sec3").onmouseout = function () { mouseOut(3) };
+  document.getElementById("sec4").onmouseout = function () { mouseOut(4) };
+  document.getElementById("sec5").onmouseout = function () { mouseOut(5) };
+  color1=colors[6];
+  color2=colors[6];
+  color3=colors[6];
+  color4=colors[6];
+  color5=colors[6];
 }
 
 function mobilechecker() {
@@ -102,8 +124,8 @@ function windowResized() {
 
 function draw() {
   clear();
-  background(230);
- // fill(colors[1]);
+  background(bgcolor);
+  // fill(colors[1]);
 
   //updatemouse();
   //fill(255,0,0);
@@ -120,10 +142,10 @@ function draw() {
   for (var j = 0; j < 8; j++)
     vertex(bounds.vertices[j].x, bounds.vertices[j].y);
   endShape(CLOSE);
-  
+
 
   noStroke();
-  fill(0, 255);
+  fill(bgcolor);
   drawBody(attractor);
 
   stroke(255, 200);
@@ -132,15 +154,28 @@ function draw() {
 
   //drawSprite(attractor,usercursorimg),
   console.log(bounds.force.x);
-  fill(0,255);
+  
+  strokeWeight(1);
 
-  fill(255, 200);
-  stroke(0, 200);
-  strokeWeight(0.5);
+  stroke(colors[1]);
+  fill(color1);
   drawBody(sec1box);
+
+  stroke(colors[2]);
+  fill(color2);
   drawBody(sec2box);
+
+  stroke(colors[3]);
+  fill(color3);
   drawBody(sec3box);
+
+
+  stroke(colors[4]);
+  fill(color4);
   drawBody(sec4box);
+
+  stroke(colors[5]);
+  fill(color5);
   drawBody(sec5box);
 
 
@@ -182,11 +217,11 @@ function setbodies() {
   //make a compound object
 
   parts = [];
-  pad = 0.04 * w;
+  pad = 0.02 * w;
   parts.push(
-    Bodies.rectangle((w / 2), h - pad, w- pad * 2, 1, { isStatic: false }),
+    Bodies.rectangle((w / 2), h - pad, w - pad * 2, 1, { isStatic: false }),
     Bodies.rectangle(pad, h / 2, 1, h - pad * 2, { isStatic: false }),
-    Bodies.rectangle(w- pad, h / 2, 1, h - pad * 2, { isStatic: false }),
+    Bodies.rectangle(w - pad, h / 2, 1, h - pad * 2, { isStatic: false }),
     Bodies.rectangle((w / 2), pad, w - pad * 2, 1, { isStatic: false })
   );
 
@@ -260,9 +295,9 @@ function setbodies() {
   if (mobile)
     cursornumber = 10;
   else
-    cursornumber = 4;
+    cursornumber = 8;
 
-  boxes = Composites.stack(width / 4, height /6, cursornumber, cursornumber, width / 100, height / 100, function (x, y) {
+  boxes = Composites.stack(width / 4, height / 6, cursornumber, cursornumber, width / 100, height / 100, function (x, y) {
     var rand = random(0.6, 2);
     return Bodies.rectangle(x, y, 15, 25, {
       mass: 0.5, restitution: 0.1, frictionAir: 0.01, friction: 0.2, collisionFilter: {
@@ -280,13 +315,14 @@ function setbodies() {
   sec1pos = getdivbox("sec1").rect;
   console.log(sec1pos);
 
-  sec1box = Bodies.rectangle((sec1pos.left +sec1pos.right) / 2, (sec1pos.top + sec1pos.bottom) / 2, sec1pos.width , sec1pos.height , {
-    
+  sec1box = Bodies.rectangle((sec1pos.left + sec1pos.right) / 2, (sec1pos.top + sec1pos.bottom) / 2, sec1pos.width, sec1pos.height, {
+
     frictionAir: 0.02, friction: 0.1, mass: 3000, inertia: 10000, isStatic: false, collisionFilter: {
       category: wallcollider
-    } });
+    }
+  });
 
-    sec1const = Constraint.create({
+  sec1const = Constraint.create({
     bodyA: sec1box,
     pointB: { x: (sec1pos.left + sec1pos.right) / 2, y: (sec1pos.top + sec1pos.bottom) / 2 },
     length: 15,
@@ -297,17 +333,18 @@ function setbodies() {
 
   //box 2
 
-  
+
   sec2pos = getdivbox("sec2").rect;
   console.log(sec2pos);
 
-  sec2box = Bodies.rectangle((sec2pos.left +sec2pos.right) / 2, (sec2pos.top + sec2pos.bottom) / 2, sec2pos.width , sec2pos.height, {
-    
-    frictionAir: 0.02, friction:0, mass: 3000, inertia: 10000, isStatic: false, collisionFilter: {
-      category: wallcollider
-    } });
+  sec2box = Bodies.rectangle((sec2pos.left + sec2pos.right) / 2, (sec2pos.top + sec2pos.bottom) / 2, sec2pos.width, sec2pos.height, {
 
-    sec2const = Constraint.create({
+    frictionAir: 0.02, friction: 0, mass: 3000, inertia: 10000, isStatic: false, collisionFilter: {
+      category: wallcollider
+    }
+  });
+
+  sec2const = Constraint.create({
     bodyA: sec2box,
     pointB: { x: (sec2pos.left + sec2pos.right) / 2, y: (sec2pos.top + sec2pos.bottom) / 2 },
     length: 15,
@@ -321,13 +358,14 @@ function setbodies() {
   sec3pos = getdivbox("sec3").rect;
   console.log(sec3pos);
 
-  sec3box = Bodies.rectangle((sec3pos.left +sec3pos.right) / 2, (sec3pos.top + sec3pos.bottom) / 2, sec3pos.width , sec3pos.height, {
-    
-    frictionAir: 0.02, friction:0, mass: 3000, inertia: 10000, isStatic: false, collisionFilter: {
-      category: wallcollider
-    } });
+  sec3box = Bodies.rectangle((sec3pos.left + sec3pos.right) / 2, (sec3pos.top + sec3pos.bottom) / 2, sec3pos.width, sec3pos.height, {
 
-    sec3const = Constraint.create({
+    frictionAir: 0.02, friction: 0, mass: 3000, inertia: 10000, isStatic: false, collisionFilter: {
+      category: wallcollider
+    }
+  });
+
+  sec3const = Constraint.create({
     bodyA: sec3box,
     pointB: { x: (sec3pos.left + sec3pos.right) / 2, y: (sec3pos.top + sec3pos.bottom) / 2 },
     length: 15,
@@ -335,17 +373,18 @@ function setbodies() {
     damping: 0.05
   });
   World.add(engine.world, [sec3box, sec3const]);
-//4
+  //4
   sec4pos = getdivbox("sec4").rect;
   console.log(sec4pos);
 
-  sec4box = Bodies.rectangle((sec4pos.left +sec4pos.right) / 2, (sec4pos.top + sec4pos.bottom) / 2, sec4pos.width , sec4pos.height, {
-    
-    frictionAir: 0.02, friction:0, mass: 3000, inertia: 10000, isStatic: false, collisionFilter: {
-      category: wallcollider
-    } });
+  sec4box = Bodies.rectangle((sec4pos.left + sec4pos.right) / 2, (sec4pos.top + sec4pos.bottom) / 2, sec4pos.width, sec4pos.height, {
 
-    sec4const = Constraint.create({
+    frictionAir: 0.02, friction: 0, mass: 3000, inertia: 10000, isStatic: false, collisionFilter: {
+      category: wallcollider
+    }
+  });
+
+  sec4const = Constraint.create({
     bodyA: sec4box,
     pointB: { x: (sec4pos.left + sec4pos.right) / 2, y: (sec4pos.top + sec4pos.bottom) / 2 },
     length: 15,
@@ -353,25 +392,26 @@ function setbodies() {
     damping: 0.05
   });
   World.add(engine.world, [sec4box, sec4const]);
-  
-//5
-sec5pos = getdivbox("sec5").rect;
-console.log(sec5pos);
 
-sec5box = Bodies.rectangle((sec5pos.left +sec5pos.right) / 2, (sec5pos.top + sec5pos.bottom) / 2, sec5pos.width , sec5pos.height, {
-  
-  frictionAir: 0.02, friction:0, mass: 3000, inertia: 10000, isStatic: false, collisionFilter: {
-    category: wallcollider
-  } });
+  //5
+  sec5pos = getdivbox("sec5").rect;
+  console.log(sec5pos);
+
+  sec5box = Bodies.rectangle((sec5pos.left + sec5pos.right) / 2, (sec5pos.top + sec5pos.bottom) / 2, sec5pos.width, sec5pos.height, {
+
+    frictionAir: 0.02, friction: 0, mass: 3000, inertia: 10000, isStatic: false, collisionFilter: {
+      category: wallcollider
+    }
+  });
 
   sec5const = Constraint.create({
-  bodyA: sec5box,
-  pointB: { x: (sec5pos.left + sec5pos.right) / 2, y: (sec5pos.top + sec5pos.bottom) / 2 },
-  length: 15,
-  stiffness: 0.001,
-  damping: 0.05
-});
-World.add(engine.world, [sec5box, sec5const]);
+    bodyA: sec5box,
+    pointB: { x: (sec5pos.left + sec5pos.right) / 2, y: (sec5pos.top + sec5pos.bottom) / 2 },
+    length: 15,
+    stiffness: 0.001,
+    damping: 0.05
+  });
+  World.add(engine.world, [sec5box, sec5const]);
 
 
 }
@@ -424,4 +464,41 @@ function getdivbox(text) {
   //console.log(rect.left, rect.top, rect.right, rect.bottom);
 
   return { rect };
+}
+
+
+//mouseover behaviours
+
+function mouseOver(sec) {
+  bgcolor = colors[sec];
+  
+  if(sec==1){
+    color1=colors[1]
+  }
+  else if (sec==2)
+  {
+    color2=colors[2]
+  }
+  else if (sec==3)
+  {
+    color3=colors[3]
+  }
+  else if (sec==4)
+  {
+    color4=colors[4]
+  }
+  else if (sec==5)
+  {
+    color5=colors[5]
+  }
+
+}
+
+function mouseOut(sec) {
+  bgcolor = colors[0];
+  color1=colors[6];
+  color2=colors[6];
+  color3=colors[6];
+  color4=colors[6];
+  color5=colors[6];
 }
