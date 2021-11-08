@@ -65,7 +65,7 @@ function setup() {
   world = engine.world;
   currentcolor = Math.floor(Math.random() * colors.length);
 
-  cursorimg = loadImage('cursor.png');
+  cursorimg = loadImage('assets/cursor.png');
   //usercursorimg = loadImage('cursor_main.png');
   pixelDensity(1);
 
