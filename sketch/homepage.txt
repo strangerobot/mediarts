@@ -43,7 +43,7 @@ let bounds;
 let mX, mY;
 let cursorimg, usercursorimg;
 //colors ora
-var colors = ['#F5F3EF', "#c2a0ff", "#ffbbad", "#e5ecc5", "#f5b6ed", "#ffde90","ffffff"], currentcolor = 2;
+var colors = ['#D0D0D0', "#c2a0ff", "#ffbbad", "#e5ecc5", "#f5b6ed", "#ffde90","ffffff"], currentcolor = 2;
 var bgcolor,color1,color2,color3,color4,color5;
 var wallcollider = 0x0001,
   mousecollider = 0x0002,
