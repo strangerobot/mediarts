@@ -65,7 +65,7 @@ function setup() {
   world = engine.world;
   currentcolor=Math.floor(Math.random() * colors.length);
 
-  cursorimg = loadImage('assets/cursor.png');
+  cursorimg = loadImage('https://uploads-ssl.webflow.com/61729645471a28201eae8786/6188cd35ccf1bc163e40b1e0_cursor.png');
   //usercursorimg = loadImage('cursor_main.png');
   pixelDensity(1);
 

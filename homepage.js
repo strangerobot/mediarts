@@ -102,14 +102,14 @@ function windowResized() {
 
 function draw() {
   clear();
-  background(0, 0);
-  fill(0);
+  background(230);
+ // fill(colors[1]);
 
   //updatemouse();
   //fill(255,0,0);
 
   noStroke();
-  fill(255, 170);
+  fill(255, 255);
 
 
   updatemouse();
@@ -122,6 +122,9 @@ function draw() {
   endShape(CLOSE);
   
 
+  noStroke();
+  fill(0, 255);
+  drawBody(attractor);
 
   stroke(255, 200);
   drawSprites(boxes.bodies, cursorimg);
@@ -130,17 +133,18 @@ function draw() {
   //drawSprite(attractor,usercursorimg),
   console.log(bounds.force.x);
   fill(0,255);
-  drawBody(titlebox);
+
   fill(255, 200);
   stroke(0, 200);
   strokeWeight(0.5);
-  drawBody(text1box);
-  drawBody(text2box);
+  drawBody(sec1box);
+  drawBody(sec2box);
+  drawBody(sec3box);
+  drawBody(sec4box);
+  drawBody(sec5box);
 
 
-  noStroke();
-  fill(255, 255);
-  drawBody(attractor);
+
 }
 //console.log(mousebox);
 
@@ -170,20 +174,20 @@ function setbodies() {
 
   //bounds
 
-  bottom = Bodies.rectangle((w / 2)+64, h, w-128, 2, { isStatic: true });
-  left = Bodies.rectangle(2+64, h / 2, 2, h, { isStatic: true });
+  bottom = Bodies.rectangle((w / 2), h, w, 2, { isStatic: true });
+  left = Bodies.rectangle(2, h / 2, 2, h, { isStatic: true });
   right = Bodies.rectangle(w - 2, h / 2, 2, h, { isStatic: true });
-  roof = Bodies.rectangle((w / 2)+64, 0, w-128, 2, { isStatic: true });
+  roof = Bodies.rectangle((w / 2), 0, w, 2, { isStatic: true });
 
   //make a compound object
 
   parts = [];
   pad = 0.04 * w;
   parts.push(
-    Bodies.rectangle((w / 2)+64, h - pad, w- 128- pad * 2, 1, { isStatic: false }),
-    Bodies.rectangle(pad+64, h / 2, 1, h - pad * 2, { isStatic: false }),
+    Bodies.rectangle((w / 2), h - pad, w- pad * 2, 1, { isStatic: false }),
+    Bodies.rectangle(pad, h / 2, 1, h - pad * 2, { isStatic: false }),
     Bodies.rectangle(w- pad, h / 2, 1, h - pad * 2, { isStatic: false }),
-    Bodies.rectangle((w / 2)+64, pad, w - 128- pad * 2, 1, { isStatic: false })
+    Bodies.rectangle((w / 2), pad, w - pad * 2, 1, { isStatic: false })
   );
 
 
@@ -238,8 +242,8 @@ function setbodies() {
       attractors: [
         function (bodyA, bodyB) {
           var force = {
-            x: (bodyA.position.x - bodyB.position.x) * 1.5e-7 + random(-5, 5) * 1.5e-4,
-            y: (bodyA.position.y - bodyB.position.y) * 1.5e-7 + + random(-5, 5) * 1.5e-4,
+            x: (bodyA.position.x - bodyB.position.x) * 3e-7 + random(-5, 5) * 1.5e-4,
+            y: (bodyA.position.y - bodyB.position.y) * 3e-7 + + random(-5, 5) * 1.5e-4,
           };
 
           // apply force to both bodies
@@ -258,7 +262,7 @@ function setbodies() {
   else
     cursornumber = 4;
 
-  boxes = Composites.stack(width / 2, height / 2, cursornumber, cursornumber, width / 100, height / 100, function (x, y) {
+  boxes = Composites.stack(width / 4, height /6, cursornumber, cursornumber, width / 100, height / 100, function (x, y) {
     var rand = random(0.6, 2);
     return Bodies.rectangle(x, y, 15, 25, {
       mass: 0.5, restitution: 0.1, frictionAir: 0.01, friction: 0.2, collisionFilter: {
@@ -270,65 +274,104 @@ function setbodies() {
 
 
   //add other boxes
-  ///title box, gets the center value titlepos.top+titlepos.bottom)/2
-  titlepos = getdivbox("title0").rect;
 
-  titlebox = Bodies.rectangle((titlepos.left + titlepos.right) / 2, (titlepos.top + titlepos.bottom) / 2, titlepos.width * 1.15, titlepos.height * 1.4, {
+  ///secboxes
+
+  sec1pos = getdivbox("sec1").rect;
+  console.log(sec1pos);
+
+  sec1box = Bodies.rectangle((sec1pos.left +sec1pos.right) / 2, (sec1pos.top + sec1pos.bottom) / 2, sec1pos.width , sec1pos.height , {
     
-    frictionAir: 0.02, friction: 0.1, mass: 30, inertia: 100000, isStatic: false, collisionFilter: {
+    frictionAir: 0.02, friction: 0.1, mass: 3000, inertia: 10000, isStatic: false, collisionFilter: {
       category: wallcollider
     } });
 
-  titleconst = Constraint.create({
-    bodyA: titlebox,
-    pointB: { x: (titlepos.left + titlepos.right) / 2, y: (titlepos.top + titlepos.bottom) / 2 },
-    length: 3,
+    sec1const = Constraint.create({
+    bodyA: sec1box,
+    pointB: { x: (sec1pos.left + sec1pos.right) / 2, y: (sec1pos.top + sec1pos.bottom) / 2 },
+    length: 15,
     stiffness: 0.001,
     damping: 0.05
   });
-  World.add(engine.world, [titlebox, titleconst]);
-
-  ///textboxes
-
-  text1pos = getdivbox("text1").rect;
-  console.log(text1pos);
-
-  text1box = Bodies.rectangle((text1pos.left +text1pos.right) / 2, (text1pos.top + text1pos.bottom) / 2, text1pos.width * 1.1, text1pos.height * 1.3, {
-    
-    frictionAir: 0.02, friction: 0.1, mass: 30000, inertia: 1000000, isStatic: false, collisionFilter: {
-      category: wallcollider
-    } });
-
-    text1const = Constraint.create({
-    bodyA: text1box,
-    pointB: { x: (text1pos.left + text1pos.right) / 2, y: (text1pos.top + text1pos.bottom) / 2 },
-    length: 0,
-    stiffness: 0.001,
-    damping: 0.05
-  });
-  World.add(engine.world, [text1box, text1const]);
+  World.add(engine.world, [sec1box, sec1const]);
 
   //box 2
 
   
-  text2pos = getdivbox("text2").rect;
-  console.log(text2pos);
+  sec2pos = getdivbox("sec2").rect;
+  console.log(sec2pos);
 
-  text2box = Bodies.rectangle((text2pos.left +text2pos.right) / 2, (text2pos.top + text2pos.bottom) / 2, text2pos.width*1.1 , text2pos.height * 1.2, {
+  sec2box = Bodies.rectangle((sec2pos.left +sec2pos.right) / 2, (sec2pos.top + sec2pos.bottom) / 2, sec2pos.width , sec2pos.height, {
     
-    frictionAir: 0.02, friction:0, mass: 3000, inertia: 1000000, isStatic: false, collisionFilter: {
+    frictionAir: 0.02, friction:0, mass: 3000, inertia: 10000, isStatic: false, collisionFilter: {
       category: wallcollider
     } });
 
-    text2const = Constraint.create({
-    bodyA: text2box,
-    pointB: { x: (text2pos.left + text2pos.right) / 2, y: (text2pos.top + text2pos.bottom) / 2 },
-    length: 0,
-    stiffness: 0.01,
+    sec2const = Constraint.create({
+    bodyA: sec2box,
+    pointB: { x: (sec2pos.left + sec2pos.right) / 2, y: (sec2pos.top + sec2pos.bottom) / 2 },
+    length: 15,
+    stiffness: 0.001,
     damping: 0.05
   });
-  World.add(engine.world, [text2box, text2const]);
+  World.add(engine.world, [sec2box, sec2const]);
+
+  //3
+
+  sec3pos = getdivbox("sec3").rect;
+  console.log(sec3pos);
+
+  sec3box = Bodies.rectangle((sec3pos.left +sec3pos.right) / 2, (sec3pos.top + sec3pos.bottom) / 2, sec3pos.width , sec3pos.height, {
+    
+    frictionAir: 0.02, friction:0, mass: 3000, inertia: 10000, isStatic: false, collisionFilter: {
+      category: wallcollider
+    } });
+
+    sec3const = Constraint.create({
+    bodyA: sec3box,
+    pointB: { x: (sec3pos.left + sec3pos.right) / 2, y: (sec3pos.top + sec3pos.bottom) / 2 },
+    length: 15,
+    stiffness: 0.001,
+    damping: 0.05
+  });
+  World.add(engine.world, [sec3box, sec3const]);
+//4
+  sec4pos = getdivbox("sec4").rect;
+  console.log(sec4pos);
+
+  sec4box = Bodies.rectangle((sec4pos.left +sec4pos.right) / 2, (sec4pos.top + sec4pos.bottom) / 2, sec4pos.width , sec4pos.height, {
+    
+    frictionAir: 0.02, friction:0, mass: 3000, inertia: 10000, isStatic: false, collisionFilter: {
+      category: wallcollider
+    } });
+
+    sec4const = Constraint.create({
+    bodyA: sec4box,
+    pointB: { x: (sec4pos.left + sec4pos.right) / 2, y: (sec4pos.top + sec4pos.bottom) / 2 },
+    length: 15,
+    stiffness: 0.001,
+    damping: 0.05
+  });
+  World.add(engine.world, [sec4box, sec4const]);
   
+//5
+sec5pos = getdivbox("sec5").rect;
+console.log(sec5pos);
+
+sec5box = Bodies.rectangle((sec5pos.left +sec5pos.right) / 2, (sec5pos.top + sec5pos.bottom) / 2, sec5pos.width , sec5pos.height, {
+  
+  frictionAir: 0.02, friction:0, mass: 3000, inertia: 10000, isStatic: false, collisionFilter: {
+    category: wallcollider
+  } });
+
+  sec5const = Constraint.create({
+  bodyA: sec5box,
+  pointB: { x: (sec5pos.left + sec5pos.right) / 2, y: (sec5pos.top + sec5pos.bottom) / 2 },
+  length: 15,
+  stiffness: 0.001,
+  damping: 0.05
+});
+World.add(engine.world, [sec5box, sec5const]);
 
 
 }

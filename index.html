@@ -10,7 +10,7 @@
   <script language="javascript" type="text/javascript" src="lib/matter.min.js"></script>
   <script language="javascript" type="text/javascript" src="lib/matter-attractors.js"></script>
   <script language="javascript" type="text/javascript" src="lib/helpers.js"></script>
-  <script language="javascript" type="text/javascript" src="sketch/sectionhome.js"></script>
+  <script language="javascript" type="text/javascript" src="homepage.js"></script>
 
 
   <style> body {padding: 0; margin: 0;} </style>
@@ -47,431 +47,41 @@
 
 </head>
 
-<body class="online-exhibition__body">
-  <div class="nav">
-    <div class="nav-main"><a href="#" class="menu__icon-wrapper w-inline-block"><img
-          src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/617cb73e3b542f191a2567ce_menu-icon.svg"
-          loading="lazy" alt="" class="menu__icon hamburger" /><img
-          src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6182c5bdc036746f647afd70_cross-icon.svg"
-          loading="lazy" alt="" class="menu__icon cross" /></a>
-      <div class="section-logo__wrapper rotate-90"><img
-          src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6180ed9d58466795b90c8efc_online%20exhibition%20logo.svg"
-          loading="lazy" alt="" class="section__logo" /></div>
-      <div class="dots-wrapper"><img
-          src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/617cb73e3a065861d60d15fb_dots-icon.svg"
-          loading="lazy" alt="" class="dots-icon" /></div>
-      <div class="nav__logo-wrapper rotate-90"><img
-          src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6172a6ab9ec5373c0ae3c258_deconfine-logo.png"
-          loading="lazy" sizes="2vw"
-          srcset="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6172a6ab9ec5373c0ae3c258_deconfine-logo-p-500.png 500w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6172a6ab9ec5373c0ae3c258_deconfine-logo-p-800.png 800w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6172a6ab9ec5373c0ae3c258_deconfine-logo-p-1080.png 1080w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6172a6ab9ec5373c0ae3c258_deconfine-logo.png 1475w"
-          alt="" class="nav__logo" /></div><a href="#" class="shuffle-wrapper w-inline-block"><img
-          src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/617cb73e1b0e086c5803f213_shuffle-icon.svg"
-          loading="lazy" alt="" class="shuffle-icon" /></a>
+
+<body>
+  <div class="exhibit-wrapper">
+    <div class="exhibit-header">
+      <div class="exhibit-header__logo-wrapper"><img
+          src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6172a8f8d65e8a9b7bffe068_deconfine-logo-2021.png"
+          loading="lazy" sizes="16vw"
+          srcset="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6172a8f8d65e8a9b7bffe068_deconfine-logo-2021-p-500.png 500w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6172a8f8d65e8a9b7bffe068_deconfine-logo-2021-p-800.png 800w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6172a8f8d65e8a9b7bffe068_deconfine-logo-2021-p-1080.png 1080w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6172a8f8d65e8a9b7bffe068_deconfine-logo-2021.png 1431w"
+          alt="" class="exhibit-header__logo-image" /></div>
     </div>
-    <div class="nav-info hide"><a href="#" class="dropdown-button main w-inline-block">
-        <div class="dropdown-icon__wrapper"><img
-            src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/617cb73dff32d6a7c862e497_dropdown-icon.svg"
-            loading="lazy" alt="" class="dropdown-icon" /></div>
-        <div class="is-base">More details</div>
-      </a>
-      <div class="artwork-name__wrapper">
-        <h2 class="is-h3">Lorem Ipsum</h2>
+    <div class="exhibit-body">
+      <div class="exhibit-note">
+        <div>Confinement is part of the very essence of human existence: we are broadly limited by the minds and bodies
+          we are born in. Parallel to this biological confinement, society has conjured its own modes of confinement,
+          deployed to control those who dare to transgress its norms, to digress.</div>
       </div>
-      <div class="nav-info__text-wrapper">
-        <div class="is-base">by</div>
-      </div>
-      <div class="artist-name__wrapper">
-        <h2 class="is-h3">Lorem Ipsum</h2>
-      </div>
-    </div>
-    <div class="info-panel">
-      <div class="info-panel__buttons"><a href="#" class="dropdown-button alt w-inline-block">
-          <div class="dropdown-icon__wrapper rotate-180"><img
-              src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/617cb73dff32d6a7c862e497_dropdown-icon.svg"
-              loading="lazy" alt="" class="dropdown-icon" /></div>
-          <div class="is-base">Hide</div>
-        </a><a href="#" class="info-panel__share w-inline-block">
-          <div>Share</div>
+      <div class="exhibit-links"><a href="/online-exhibition" class="exhibit-link__item online w-inline-block"  id="sec1">
+          <div class="is-h2">Online Exhibition</div>
+        </a><a href="/featured-projects" class="exhibit-link__item featured w-inline-block" id="sec2">
+          <div class="is-h2">Featured Projects</div>
+        </a><a href="/french-digital-corner" class="exhibit-link__item fdc w-inline-block"  id="sec3">
+          <div class="is-h2">French Digital Corner</div>
+        </a><a href="/offline-events" class="exhibit-link__item offline w-inline-block"  id="sec4">
+          <div class="is-h2">Offline <br />Events</div>
+        </a><a href="/conversations" class="exhibit-link__item convos w-inline-block"  id="sec5">
+          <div class="is-h2">Conversations</div>
         </a></div>
-      <div class="info-panel__content-wrapper">
-        <div class="info-panel__left">
-          <div class="info-panel__title">
-            <h1>Lorem Ipsum</h1>
-          </div>
-          <div class="info-panel__desc">
-            <div class="w-richtext">
-              <p>momimsafe.live ran as an active live-stream of the artist’s home studio space in Chicago from March to
-                August 2020, where he spent most of his time during the pandemic. The livestream was accompanied by an
-                interactive virtual printer, which would print messages sent by site visitors in real-time. A
-                compilation of extracts from these messages have also been published on (covid-19) Antidote, a
-                limited-edition artist book. Created with the goal of being “visually and physically accessible” to
-                loved ones, momimsafe evokes new ways to facilitate human relationships in the virtual
-                realm.<br /><br /> It addresses the pain of distance and separation created by the pandemic, and
-                imagines technological gestures that might recreate the warmth of physical proximity. At a time when
-                digital tools are often used to create division, momimsafe charts a different course, generating empathy
-                and affection through the same devices.</p>
-            </div>
-          </div>
-        </div>
-        <div class="info-panel__right">
-          <div class="info-panel__subpanel">
-            <div class="info-panel__artist-wrapper">
-              <div class="info-panel__artist-name">
-                <h3 class="is-h3">Lorem Ipsum</h3>
-              </div>
-              <div class="info-panel__artist-image-wrapper"><img
-                  src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/617cf398d7ed7f1e5c809f24_artist-placeholder.png"
-                  loading="lazy" alt="" /></div>
-            </div>
-            <div class="info-panel__artist-info">
-              <div class="w-richtext">
-                <p>momimsafe.live ran as an active live-stream of the artist’s home studio space in Chicago from March
-                  to August 2020, where he spent most of his time during the pandemic. The livestream was accompanied by
-                  an interactive virtual printer, which would print messages sent by site visitors in real-time. A
-                  compilation of extracts from these messages have also been published on (covid-19) Antidote, a
-                  limited-edition artist book. momimsafe.live ran as an active live-stream of the artist’s home studio
-                  space in Chicago from March to August 2020, where he spent most of his time during the pandemic. The
-                  livestream was accompanied by an interactive virtual printer, which would print messages sent by site
-                  visitors in real-time. A compilation of extracts from these messages have also been published on
-                  (covid-19) </p>
-              </div>
-            </div>
-          </div>
-          <div class="info-panel__subpanel">
-            <div class="info-panel__infos">
-              <div class="subpanel-item__wrapper">
-                <div class="subpanel-title">
-                  <h4 class="is-h4">Medium</h4>
-                </div>
-                <div class="subpanel-desc">
-                  <div>2020<br />Digital Video and Mixed Media<br />Other Art Info</div>
-                </div>
-              </div>
-              <div class="subpanel-item__wrapper">
-                <div class="subpanel-title">
-                  <h4 class="is-h4">External Links</h4>
-                </div>
-                <div class="subpanel-desc">
-                  <div>2020<br />Digital Video and Mixed Media<br />Other Art Info</div>
-                </div>
-              </div>
-              <div class="subpanel-item__wrapper">
-                <div class="subpanel-title">
-                  <h4 class="is-h4">Credits</h4>
-                </div>
-                <div class="subpanel-desc">
-                  <div>2020<br />Digital Video and Mixed Media<br />Other Art Info</div>
-                </div>
-              </div>
-              <div class="subpanel-item__wrapper">
-                <div class="subpanel-title">
-                  <h4 class="is-h4">Sponsors</h4>
-                </div>
-                <div class="subpanel-desc">
-                  <div>2020<br />Digital Video and Mixed Media<br />Other Art Info</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-    <div class="nav-section-panel">
-      <div class="nav-section__items-wrapper online-exhibition"><a href="/online-exhibition/budhaditya-chattopadhyay"
-          class="nav-section__item w-inline-block">
-          <div class="nav-section__item-artist">
-            <div class="is-h3">Budhaditya Chattopadhyay</div>
-          </div>
-          <div id="w-node-_8c57b587-8435-01cf-22f6-fbd9bca031b6-bca03144" class="nav-section__item-title">
-            <div class="is-h3">Planchette Bot</div>
-          </div>
-        </a><a href="/online-exhibition/sahej-rahal" class="nav-section__item w-inline-block">
-          <div class="nav-section__item-artist">
-            <div class="is-h3">Sahej Rahal</div>
-          </div>
-          <div id="w-node-_8c57b587-8435-01cf-22f6-fbd9bca031bd-bca03144" class="nav-section__item-title">
-            <div class="is-h3">Shrota</div>
-          </div>
-        </a><a href="/online-exhibition/sounak-das" class="nav-section__item w-inline-block">
-          <div class="nav-section__item-artist">
-            <div class="is-h3">Sounak Das</div>
-          </div>
-          <div id="w-node-_8c57b587-8435-01cf-22f6-fbd9bca031c4-bca03144" class="nav-section__item-title">
-            <div class="is-h3">Perturbed Monitor</div>
-          </div>
-        </a><a href="/online-exhibition/samyukta-bhandari" class="nav-section__item w-inline-block">
-          <div class="nav-section__item-artist">
-            <div class="is-h3">Samyuktha Bhandari</div>
-          </div>
-          <div id="w-node-_8c57b587-8435-01cf-22f6-fbd9bca031cb-bca03144" class="nav-section__item-title">
-            <div class="is-h3">Untitled</div>
-          </div>
-        </a><a href="/online-exhibition/yudhanjaya-wijeratne" class="nav-section__item w-inline-block">
-          <div class="nav-section__item-artist">
-            <div class="is-h3">Yudhanjaya Wijeratne</div>
-          </div>
-          <div id="w-node-_8c57b587-8435-01cf-22f6-fbd9bca031d2-bca03144" class="nav-section__item-title">
-            <div class="is-h3">Auto | Biography</div>
-          </div>
-        </a><a href="/online-exhibition/morteza-herati" class="nav-section__item w-inline-block">
-          <div class="nav-section__item-artist">
-            <div class="is-h3">Morteza Herati</div>
-          </div>
-          <div id="w-node-_8c57b587-8435-01cf-22f6-fbd9bca031d9-bca03144" class="nav-section__item-title">
-            <div class="is-h3">Afghan Glitch</div>
-          </div>
-        </a><a href="/online-exhibition/rabeeha-adnan" class="nav-section__item w-inline-block">
-          <div class="nav-section__item-artist">
-            <div class="is-h3">Rabeeha Adnan</div>
-          </div>
-          <div id="w-node-_8c57b587-8435-01cf-22f6-fbd9bca031e0-bca03144" class="nav-section__item-title">
-            <div class="is-h3">Circuit City Ensemble</div>
-          </div>
-        </a></div>
-      <div class="nav-section__main-links-wrapper"><a href="/online-exhibition" aria-current="page"
-          class="nav-section__main-link-item w-inline-block w--current"><img
-            src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6182b8a28835e60af5cd33e9_online%20exhibition%20dark.svg"
-            loading="lazy" alt="" class="nav-section__main-link-icon online-exhibition" /></a><a
-          href="/featured-projects" class="nav-section__main-link-item w-inline-block"><img
-            src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6182b8a21e71fe783e2fd205_featured%20projects%20dark.svg"
-            loading="lazy" alt="" class="nav-section__main-link-icon featured-projects" /></a><a href="/offline-events"
-          class="nav-section__main-link-item w-inline-block"><img
-            src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6182b8a25c8249d6dc21b17b_offline%20events%20dark.svg"
-            loading="lazy" alt="" class="nav-section__main-link-icon offline-events" /></a><a
-          href="/french-digital-corner" class="nav-section__main-link-item w-inline-block"><img
-            src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6182b8a2faa3d92be985f68d_french%20digital%20corner%20dark.svg"
-            loading="lazy" alt="" class="nav-section__main-link-icon fdc" /></a><a href="/conversations"
-          class="nav-section__main-link-item w-inline-block"><img
-            src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6182b8a20be416f9c7b3e965_conversations%20dark.svg"
-            loading="lazy" alt="" class="nav-section__main-link-icon conversations" /></a></div>
-      <div class="nav-section__sub-links-wrapper"><a href="#" class="nav-section__sub-link-item w-inline-block">
+    <div class="exhibit-footer">
+      <div class="exhibit-footer__links"><a href="#" class="exhibit-footer__link-item w-inline-block">
           <div class="is-base">About</div>
-        </a><a href="#" class="nav-section__sub-link-item w-inline-block">
+        </a><a href="#" class="exhibit-footer__link-item w-inline-block">
           <div class="is-base">Press</div>
         </a></div>
     </div>
   </div>
-  <div>
-    <div class="section wf-section">
-      <div class="container">
-        <div class="hero">
-          <div class="page-title">
-            <h1 class="is-d1" id="title0">Online Exhibition</h1>
-          </div>
-          <div class="hero-desc__wrapper">
-            <div class="hero-desc is-base" id="text1">Confinement is part of the very essence of human existence: we are broadly
-              limited by the minds and bodies we are born in. Parallel to this biological confinement, society has
-              conjured its own modes of confinement, deployed to control those who dare to transgress its norms, to
-              digress from its invisible (but imposing) script. With the evolution of human civilization, its members
-              have grown more and more adept at devising protean tools of confinement: schools, prisons, factories,
-              visas and permits being some of the most common instances. Technology is rapidly gaining prominence as a
-              tool that can be manipulated to enforce similar agendas.</div>
-            <div class="hero-desc is-base" id="text2">Confinement is part of the very essence of human existence: we are broadly
-              limited by the minds and bodies we are born in. Parallel to this biological confinement, society has
-              conjured its own modes of confinement, deployed to control those who dare to transgress its norms, to
-              digress from its invisible (but imposing) script. With the evolution of human civilization, its members
-              have grown more and more adept at devising protean tools of confinement: schools, prisons, factories,
-              visas and permits being some of the most common instances. Technology is rapidly gaining prominence as a
-              tool that can be manipulated to enforce similar agendas.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="section padding-5 wf-section">
-      <div class="container">
-        <div class="exhibits__wrapper">
-          <div class="exhibits__tags">
-            <div id="w-node-_766adf53-a640-0c1f-6a24-cfad53bc0ce5-92bd20fe" class="exhibit__tag">
-              <div class="is-h2 is-bold">Exhibits</div>
-            </div>
-            <div id="w-node-dde5ab16-a34b-c778-0510-8a6ea92abbcc-92bd20fe" class="exhibit__tag">
-              <div class="is-h2 is-bold">Artist</div>
-            </div>
-          </div>
-          <div class="exhibit-items__wrapper">
-            <div class="exhibit-item no-accordion"><a href="/online-exhibition/budhaditya-chattopadhyay"
-                class="exhibit-item__header w-inline-block">
-                <div class="exhibit-item__icon-wrapper"><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6185f34ea2b319f9b2c110bb_eye%20closed.svg"
-                    loading="lazy" alt="" class="exhibit-item__icon-closed" /><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6185f34e7bff2e3df9089537_eye%20open.svg"
-                    loading="lazy" alt="" class="exhibit-item__icon-open" /></div>
-                <div class="exhibit-item__title">
-                  <div class="is-h3">Planchette Bot</div>
-                </div>
-                <div class="exhibit-item__creator">
-                  <div class="is-h3">Budhaditya Chattopadhyay</div>
-                </div>
-                <div class="exhibit-item__image-wrapper"><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187a0ab721ca549732421b7_budha-artwork.jpg"
-                    loading="lazy" sizes="100vw"
-                    srcset="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187a0ab721ca549732421b7_budha-artwork-p-500.jpeg 500w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187a0ab721ca549732421b7_budha-artwork-p-800.jpeg 800w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187a0ab721ca549732421b7_budha-artwork.jpg 900w"
-                    alt="" class="exhibit-item__image" /></div>
-              </a>
-              <div class="exhibit-item__body hide"></div>
-            </div>
-            <div class="exhibit-item no-accordion"><a href="/online-exhibition/sahej-rahal"
-                class="exhibit-item__header w-inline-block">
-                <div class="exhibit-item__icon-wrapper"><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6185f34ea2b319f9b2c110bb_eye%20closed.svg"
-                    loading="lazy" alt="" class="exhibit-item__icon-closed" /><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6185f34e7bff2e3df9089537_eye%20open.svg"
-                    loading="lazy" alt="" class="exhibit-item__icon-open" /></div>
-                <div class="exhibit-item__title">
-                  <div class="is-h3">Shrota</div>
-                </div>
-                <div class="exhibit-item__creator">
-                  <div class="is-h3">Sahej Rahal</div>
-                </div>
-                <div class="exhibit-item__image-wrapper"><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187a0ab40c5234d84ca8945_sahej-artwork.png"
-                    loading="lazy" alt="" class="exhibit-item__image" /></div>
-              </a>
-              <div class="exhibit-item__body hide"></div>
-            </div>
-            <div class="exhibit-item no-accordion"><a href="/online-exhibition/sounak-das"
-                class="exhibit-item__header w-inline-block">
-                <div class="exhibit-item__icon-wrapper"><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6185f34ea2b319f9b2c110bb_eye%20closed.svg"
-                    loading="lazy" alt="" class="exhibit-item__icon-closed" /><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6185f34e7bff2e3df9089537_eye%20open.svg"
-                    loading="lazy" alt="" class="exhibit-item__icon-open" /></div>
-                <div class="exhibit-item__title">
-                  <div class="is-h3">Perturbed Monitor</div>
-                </div>
-                <div class="exhibit-item__creator">
-                  <div class="is-h3">Sounak Das</div>
-                </div>
-                <div class="exhibit-item__image-wrapper"><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187a0ab326ced120fc9cf4c_sounak-artwork.jpg"
-                    loading="lazy" sizes="100vw"
-                    srcset="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187a0ab326ced120fc9cf4c_sounak-artwork-p-500.jpeg 500w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187a0ab326ced120fc9cf4c_sounak-artwork-p-800.jpeg 800w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187a0ab326ced120fc9cf4c_sounak-artwork.jpg 900w"
-                    alt="" class="exhibit-item__image" /></div>
-              </a>
-              <div class="exhibit-item__body hide"></div>
-            </div>
-            <div class="exhibit-item no-accordion"><a href="/online-exhibition/samyukta-bhandari"
-                class="exhibit-item__header w-inline-block">
-                <div class="exhibit-item__icon-wrapper"><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6185f34ea2b319f9b2c110bb_eye%20closed.svg"
-                    loading="lazy" alt="" class="exhibit-item__icon-closed" /><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6185f34e7bff2e3df9089537_eye%20open.svg"
-                    loading="lazy" alt="" class="exhibit-item__icon-open" /></div>
-                <div class="exhibit-item__title">
-                  <div class="is-h3">Untitled</div>
-                </div>
-                <div class="exhibit-item__creator">
-                  <div class="is-h3">Samyukta Bhandari</div>
-                </div>
-                <div class="exhibit-item__image-wrapper"><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187842b5ece08d188650f87_samyukta-profile.jpg"
-                    loading="lazy" sizes="100vw"
-                    srcset="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187842b5ece08d188650f87_samyukta-profile-p-500.jpeg 500w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187842b5ece08d188650f87_samyukta-profile-p-800.jpeg 800w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187842b5ece08d188650f87_samyukta-profile.jpg 900w"
-                    alt="" class="exhibit-item__image" /></div>
-              </a>
-              <div class="exhibit-item__body hide"></div>
-            </div>
-            <div class="exhibit-item no-accordion"><a href="/online-exhibition/yudhanjaya-wijeratne"
-                class="exhibit-item__header w-inline-block">
-                <div class="exhibit-item__icon-wrapper"><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6185f34ea2b319f9b2c110bb_eye%20closed.svg"
-                    loading="lazy" alt="" class="exhibit-item__icon-closed" /><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6185f34e7bff2e3df9089537_eye%20open.svg"
-                    loading="lazy" alt="" class="exhibit-item__icon-open" /></div>
-                <div class="exhibit-item__title">
-                  <div class="is-h3">Auto | Biography</div>
-                </div>
-                <div class="exhibit-item__creator">
-                  <div class="is-h3">Yudhanjaya Wijeratne</div>
-                </div>
-                <div class="exhibit-item__image-wrapper"><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187842c92aafe72d71bc5e2_yudhanjaya-profile.jpg"
-                    loading="lazy" sizes="100vw"
-                    srcset="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187842c92aafe72d71bc5e2_yudhanjaya-profile-p-500.jpeg 500w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187842c92aafe72d71bc5e2_yudhanjaya-profile-p-800.jpeg 800w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187842c92aafe72d71bc5e2_yudhanjaya-profile.jpg 900w"
-                    alt="" class="exhibit-item__image" /></div>
-              </a>
-              <div class="exhibit-item__body hide"></div>
-            </div>
-            <div class="exhibit-item no-accordion"><a href="/online-exhibition/morteza-herati"
-                class="exhibit-item__header w-inline-block">
-                <div class="exhibit-item__icon-wrapper"><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6185f34ea2b319f9b2c110bb_eye%20closed.svg"
-                    loading="lazy" alt="" class="exhibit-item__icon-closed" /><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6185f34e7bff2e3df9089537_eye%20open.svg"
-                    loading="lazy" alt="" class="exhibit-item__icon-open" /></div>
-                <div class="exhibit-item__title">
-                  <div class="is-h3">Afghan Glitch</div>
-                </div>
-                <div class="exhibit-item__creator">
-                  <div class="is-h3">Morteza Herati</div>
-                </div>
-                <div class="exhibit-item__image-wrapper"><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187a0ab93e6b23455c6e242_morteza-artwork.jpg"
-                    loading="lazy" sizes="100vw"
-                    srcset="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187a0ab93e6b23455c6e242_morteza-artwork-p-500.jpeg 500w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187a0ab93e6b23455c6e242_morteza-artwork-p-800.jpeg 800w, https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187a0ab93e6b23455c6e242_morteza-artwork.jpg 900w"
-                    alt="" class="exhibit-item__image" /></div>
-              </a>
-              <div class="exhibit-item__body hide"></div>
-            </div>
-            <div class="exhibit-item no-accordion"><a href="/online-exhibition/rabeeha-adnan"
-                class="exhibit-item__header w-inline-block">
-                <div class="exhibit-item__icon-wrapper"><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6185f34ea2b319f9b2c110bb_eye%20closed.svg"
-                    loading="lazy" alt="" class="exhibit-item__icon-closed" /><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6185f34e7bff2e3df9089537_eye%20open.svg"
-                    loading="lazy" alt="" class="exhibit-item__icon-open" /></div>
-                <div class="exhibit-item__title">
-                  <div class="is-h3">Circuit City Ensemble</div>
-                </div>
-                <div class="exhibit-item__creator">
-                  <div class="is-h3">Rabeeha Adnan</div>
-                </div>
-                <div class="exhibit-item__image-wrapper"><img
-                    src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/6187a0aa14b63849f4b1121e_rabeeha-artwork.png"
-                    loading="lazy" alt="" class="exhibit-item__image" /></div>
-              </a>
-              <div class="exhibit-item__body hide"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="section padding-5 wf-section">
-      <div class="container">
-        <div class="supported-by">
-          <div class="section-title">
-            <div class="is-h2 is-bold">Supported By</div>
-          </div>
-          <div class="support-logos">
-            <div id="w-node-_35e2ab03-1f33-44d7-3778-27214de6c201-92bd20fe" class="support-logo__item"><img
-                src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/617a66017e1621049519a766_open%20graph.png"
-                loading="lazy" alt="" class="support-logo__item-image" /></div>
-            <div id="w-node-_53a463fa-0b9f-5683-c3df-1b9428a9ab4a-92bd20fe" class="support-logo__item"><img
-                src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/617a66017e1621049519a766_open%20graph.png"
-                loading="lazy" alt="" class="support-logo__item-image" /></div>
-            <div id="w-node-c111de16-6725-9f94-3152-fe47a9bf02da-92bd20fe" class="support-logo__item"><img
-                src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/617a66017e1621049519a766_open%20graph.png"
-                loading="lazy" alt="" class="support-logo__item-image" /></div>
-            <div id="w-node-abea2dfc-fbde-b7e2-bdcc-66745b2aa138-92bd20fe" class="support-logo__item"><img
-                src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/617a66017e1621049519a766_open%20graph.png"
-                loading="lazy" alt="" class="support-logo__item-image" /></div>
-            <div id="w-node-_16d9d04e-a6ea-0254-baeb-a2e86f345a41-92bd20fe" class="support-logo__item"><img
-                src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/617a66017e1621049519a766_open%20graph.png"
-                loading="lazy" alt="" class="support-logo__item-image" /></div>
-            <div id="w-node-_0c43ab82-ce64-84b9-b223-10deb8fc603d-92bd20fe" class="support-logo__item"><img
-                src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/617a66017e1621049519a766_open%20graph.png"
-                loading="lazy" alt="" class="support-logo__item-image" /></div>
-            <div id="w-node-_57fa4d50-ec02-7dd7-1f72-d8d7e896ee7d-92bd20fe" class="support-logo__item"><img
-                src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/617a66017e1621049519a766_open%20graph.png"
-                loading="lazy" alt="" class="support-logo__item-image" /></div>
-            <div id="w-node-_1d2e704c-82c2-0459-d0e2-0586a78299fe-92bd20fe" class="support-logo__item"><img
-                src="https://uploads-ssl.webflow.com/61729645471a28201eae8786/617a66017e1621049519a766_open%20graph.png"
-                loading="lazy" alt="" class="support-logo__item-image" /></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 </body>
 </html>
