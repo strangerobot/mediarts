@@ -67,7 +67,7 @@ function setup() {
 
   cursorimg = loadImage('https://uploads-ssl.webflow.com/61729645471a28201eae8786/6188cd35ccf1bc163e40b1e0_cursor.png');
   //usercursorimg = loadImage('cursor_main.png');
-  pixelDensity(1);
+  pixelDensity(2);
 
   
   // Populate objects and start simulation
