@@ -118,7 +118,7 @@ function windowResized() {
     currentcolor = Math.floor(Math.random() * colors.length);
     //reset engine
     enginesetup();
-    pixelDensity(1);
+    pixelDensity(2);
   }
 }
 
