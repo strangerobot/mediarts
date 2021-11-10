@@ -217,7 +217,7 @@ function setbodies() {
   //make a compound object
 
   parts = [];
-  pad = 0.06 * h1;
+  pad = 0.03 * w1;
   parts.push(
     Bodies.rectangle((w1 / 2), h1 - pad, w1 - pad * 2, 1, { isStatic: false }),
     Bodies.rectangle(pad, h1 / 2, 1, h1 - pad * 2, { isStatic: false }),
