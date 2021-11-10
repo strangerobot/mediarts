@@ -124,7 +124,7 @@ function draw() {
 updatemouse();
  drawBody(attractor);
   //drawSprite(attractor,usercursorimg),
-  console.log(bounds.force.x);
+
 
 }
 //console.log(mousebox);

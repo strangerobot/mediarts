@@ -128,7 +128,7 @@ function draw() {
   // drawBodies(boxes.bodies);
 
   //drawSprite(attractor,usercursorimg),
-  console.log(bounds.force.x);
+
   fill(0,255);
   drawBody(titlebox);
   fill(255, 200);
@@ -142,7 +142,7 @@ function draw() {
   fill(255, 255);
   drawBody(attractor);
 }
-//console.log(mousebox);
+
 
 function mousePressed() {
   currentcolor = Math.floor(Math.random() * colors.length);
@@ -169,21 +169,26 @@ function setbodies() {
   //objects
 
   //bounds
+  if(w1>992)
+  {
+    offsetval=64;
+  }else
+  offsetval=0;
 
-  bottom = Bodies.rectangle((w1 / 2)+64, h1, w1-128, 2, { isStatic: true });
-  left = Bodies.rectangle(2+64, h1 / 2, 2, h1, { isStatic: true });
+  bottom = Bodies.rectangle((w1 / 2)+offsetval, h1, w1-128, 2, { isStatic: true });
+  left = Bodies.rectangle(2+offsetval, h1 / 2, 2, h1, { isStatic: true });
   right = Bodies.rectangle(w1 - 2, h1 / 2, 2, h1, { isStatic: true });
-  roof = Bodies.rectangle((w1 / 2)+64, 0, w1-128, 2, { isStatic: true });
+  roof = Bodies.rectangle((w1 / 2)+offsetval, 0, w1-128, 2, { isStatic: true });
 
   //make a compound object
 
   parts = [];
-  pad = 0.03 * w1;
+  pad = 0.02 * w1;
   parts.push(
-    Bodies.rectangle((w1 / 2)+64, h1 - pad, w1- 128- pad * 2, 1, { isStatic: false }),
-    Bodies.rectangle(pad+64, h1 / 2, 1, h1 - pad * 2, { isStatic: false }),
+    Bodies.rectangle((w1 / 2)+offsetval, h1 - pad, w1- 128- pad * 2, 1, { isStatic: false }),
+    Bodies.rectangle(pad+offsetval, h1 / 2, 1, h1 - pad * 2, { isStatic: false }),
     Bodies.rectangle(w1- pad, h1 / 2, 1, h1 - pad * 2, { isStatic: false }),
-    Bodies.rectangle((w1 / 2)+64, pad, w1 - 128- pad * 2, 1, { isStatic: false })
+    Bodies.rectangle((w1 / 2)+offsetval, pad, w1 - 128- pad * 2, 1, { isStatic: false })
   );
 
 
@@ -273,7 +278,7 @@ function setbodies() {
   ///title box, gets the center value titlepos.top+titlepos.bottom)/2
   titlepos = getdivbox("title0").rect;
 
-  titlebox = Bodies.rectangle((titlepos.left + titlepos.right) / 2, (titlepos.top + titlepos.bottom) / 2, titlepos.width * 1.15, titlepos.height * 1.4, {
+  titlebox = Bodies.rectangle((titlepos.left + titlepos.right) / 2, (titlepos.top + titlepos.bottom) / 2, titlepos.width * 1.10, titlepos.height * 1.2, {
     
     frictionAir: 0.02, friction: 0.1, mass: 30, inertia: 100000, isStatic: false, collisionFilter: {
       category: wallcollider
@@ -291,9 +296,9 @@ function setbodies() {
   ///textboxes
 
   text1pos = getdivbox("text1").rect;
-  console.log(text1pos);
 
-  text1box = Bodies.rectangle((text1pos.left +text1pos.right) / 2, (text1pos.top + text1pos.bottom) / 2, text1pos.width * 1.1, text1pos.height * 1.3, {
+
+  text1box = Bodies.rectangle((text1pos.left +text1pos.right) / 2, (text1pos.top + text1pos.bottom) / 2, text1pos.width * 1.1, text1pos.height * 1.2, {
     
     frictionAir: 0.02, friction: 0.1, mass: 30000, inertia: 1000000, isStatic: false, collisionFilter: {
       category: wallcollider
@@ -312,7 +317,6 @@ function setbodies() {
 
   
   text2pos = getdivbox("text2").rect;
-  console.log(text2pos);
 
   text2box = Bodies.rectangle((text2pos.left +text2pos.right) / 2, (text2pos.top + text2pos.bottom) / 2, text2pos.width*1.1 , text2pos.height * 1.2, {
     
@@ -376,9 +380,9 @@ Matter.Events.on(mouseConstraint, "startdrag", function (event) {
 function getdivbox(text) {
 
   var element = document.getElementById(text);
-  //console.log(element);
+
   rect = element.getBoundingClientRect();
-  //console.log(rect.left, rect.top, rect.right, rect.bottom);
+
 
   return { rect };
 }

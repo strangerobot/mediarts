@@ -313,7 +313,7 @@ function setbodies() {
   ///secboxes
 
   sec1pos = getdivbox("sec1").rect;
-  console.log(sec1pos);
+
 
   sec1box = Bodies.rectangle((sec1pos.left + sec1pos.right) / 2, (sec1pos.top + sec1pos.bottom) / 2, sec1pos.width, sec1pos.height, {
 
@@ -335,7 +335,7 @@ function setbodies() {
 
 
   sec2pos = getdivbox("sec2").rect;
-  console.log(sec2pos);
+
 
   sec2box = Bodies.rectangle((sec2pos.left + sec2pos.right) / 2, (sec2pos.top + sec2pos.bottom) / 2, sec2pos.width, sec2pos.height, {
 
@@ -356,7 +356,7 @@ function setbodies() {
   //3
 
   sec3pos = getdivbox("sec3").rect;
-  console.log(sec3pos);
+
 
   sec3box = Bodies.rectangle((sec3pos.left + sec3pos.right) / 2, (sec3pos.top + sec3pos.bottom) / 2, sec3pos.width, sec3pos.height, {
 
@@ -375,7 +375,7 @@ function setbodies() {
   World.add(engine.world, [sec3box, sec3const]);
   //4
   sec4pos = getdivbox("sec4").rect;
-  console.log(sec4pos);
+ 
 
   sec4box = Bodies.rectangle((sec4pos.left + sec4pos.right) / 2, (sec4pos.top + sec4pos.bottom) / 2, sec4pos.width, sec4pos.height, {
 
@@ -395,7 +395,7 @@ function setbodies() {
 
   //5
   sec5pos = getdivbox("sec5").rect;
-  console.log(sec5pos);
+
 
   sec5box = Bodies.rectangle((sec5pos.left + sec5pos.right) / 2, (sec5pos.top + sec5pos.bottom) / 2, sec5pos.width, sec5pos.height, {
 
