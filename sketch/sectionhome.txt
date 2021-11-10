@@ -52,17 +52,22 @@ var wallcollider = 0x0001,
 //width and height
 let w1, h1;
 
+history.scrollRestoration = "manual";
+
+window.onbeforeunload = function () {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
 
 function setup() {
   //setting canvas size
-  hero =  document.getElementsByClassName("hero height");
-  herodimensions=hero.getBoundingClientRect();
+  hero =  document.getElementById("heroheight");
+  herodimensions=hero.getBoundingClientRect().height*1.3;
 
-  const canvas = createCanvas(windowWidth, herodimensions.rect.height);
+  const canvas = createCanvas(windowWidth, herodimensions);
   canvas.position(0, 0);
   canvas.id('sketch');
   w1 = windowWidth;
-  h1 = herodimensions.rect.height;
+  h1 = herodimensions;
   // frameRate(120);
   // create an engine
   engine = Engine.create();
@@ -94,12 +99,12 @@ function mobilechecker() {
 function windowResized() {
   //redraw the canvas;
   if (!mobile) {
-      hero =  document.getElementsByClassName("hero height");
-  herodimensions=hero.getBoundingClientRect();
+    hero =  document.getElementById("heroheight");
+    herodimensions=hero.getBoundingClientRect().height*1.2;
 
-    resizeCanvas(windowWidth, herodimensions.rect.height);
+    resizeCanvas(windowWidth,  herodimensions);
     w1 = windowWidth;
-    h1 = herodimensions.rect.height;
+    h1 =  herodimensions;
     currentcolor = Math.floor(Math.random() * colors.length);
     //reset engine
     enginesetup();
