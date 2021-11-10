@@ -1875,7 +1875,7 @@
           }),
           (t.mousemove = function(e) {
             var n = i._getRelativeMousePosition(e, t.element, t.pixelRatio);
-            e.changedTouches && ((t.button = 0), e.preventDefault()),
+            e.changedTouches && ((t.button = 0)),
               (t.absolute.x = n.x),
               (t.absolute.y = n.y),
               (t.position.x = t.absolute.x * t.scale.x + t.offset.x),
@@ -1885,7 +1885,7 @@
           (t.mousedown = function(e) {
             var n = i._getRelativeMousePosition(e, t.element, t.pixelRatio);
             e.changedTouches
-              ? ((t.button = 0), e.preventDefault())
+              ? ((t.button = 0))
               : (t.button = e.button),
               (t.absolute.x = n.x),
               (t.absolute.y = n.y),
@@ -1897,7 +1897,7 @@
           }),
           (t.mouseup = function(e) {
             var n = i._getRelativeMousePosition(e, t.element, t.pixelRatio);
-            e.changedTouches && e.preventDefault(),
+            e.changedTouches,
               (t.button = -1),
               (t.absolute.x = n.x),
               (t.absolute.y = n.y),
@@ -1911,8 +1911,7 @@
             (t.wheelDelta = Math.max(
               -1,
               Math.min(1, e.wheelDelta || -e.detail)
-            )),
-              e.preventDefault();
+            ))
           }),
           i.setElement(t, t.element),
           t
