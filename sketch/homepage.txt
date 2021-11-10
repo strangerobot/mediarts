@@ -55,11 +55,11 @@ let w1, h1;
 
 function setup() {
   //setting canvas size
-  const canvas = createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(windowWidth,document.body.scrollHeight);
   canvas.position(0, 0);
   canvas.id('sketch');
   w1 = windowWidth;
-  h1 = windowHeight;
+  h1 = document.body.scrollHeight;
   // frameRate(120);
   // create an engine
   engine = Engine.create();
@@ -112,9 +112,9 @@ function mobilechecker() {
 function windowResized() {
   //redraw the canvas;
   if (!mobile) {
-    resizeCanvas(windowWidth, windowHeight);
+    resizeCanvas(windowWidth,document.body.scrollHeight);
     w1 = windowWidth;
-    h1 = windowHeight;
+    h1 = document.body.scrollHeight;
     currentcolor = Math.floor(Math.random() * colors.length);
     //reset engine
     enginesetup();
